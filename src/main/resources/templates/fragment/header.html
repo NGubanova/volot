@@ -1,0 +1,21 @@
+<div th:fragment="header"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <header class="p-1 bg-light border-bottom border-dark">
+        <div class="container">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAuthority('ADMIN')"
+                       href="/employee">Сотрудники</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAuthority('ADMIN')"
+                       href="/product">Продукты</a></li>
+                <li><a class="nav-link p-4 text-black fs-5 fw-light" sec:authorize="hasAuthority('HR')"
+                       href="/">Заказы</a></li>
+
+                <form th:action="@{/logout}" method="post"
+                      sec:authorize="hasAnyAuthority('ADMIN','HR')">
+                    <input type="submit" value="Выйти"
+                           class="btn btn-outline-dark btn-sm fs-5 fw-light rounded-4 border-light p-2 m-3"/>
+                </form>
+            </ul>
+        </div>
+    </header>
+</div>
